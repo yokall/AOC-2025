@@ -1,0 +1,37 @@
+{
+    "name": "Go AOC 2025",
+    "image": "mcr.microsoft.com/devcontainers/go:1.23",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.go",
+                "ms-vscode.makefile-tools",
+                "ms-vscode.Go",
+                "golangci.golangci-lint-vs-code",
+                "ritwickdey.liveserver"
+            ],
+            "settings": {
+                "go.lintOnSave": "package",
+                "go.lintTool": "golangci-lint",
+                "go.lintFlags": [
+                    "--timeout",
+                    "5m"
+                ],
+                "go.coverOnSave": true,
+                "go.useCodeSnippetsOnFunctionSuggest": true,
+                "[go]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit"
+                    }
+                }
+            }
+        }
+    },
+    "postCreateCommand": "go mod download && go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+    "remoteUser": "vscode",
+}
