@@ -12,7 +12,8 @@
                 "ms-vscode.makefile-tools",
                 "ms-vscode.Go",
                 "golangci.golangci-lint-vs-code",
-                "ritwickdey.liveserver"
+                "ritwickdey.liveserver",
+                "mhutchie.git-graph"
             ],
             "settings": {
                 "go.lintOnSave": "package",
@@ -33,5 +34,5 @@
         }
     },
     "postCreateCommand": "go mod download && go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
-    "remoteUser": "vscode",
+    "remoteUser": "vscode"
 }
