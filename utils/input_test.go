@@ -1,10 +1,33 @@
 package utils
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func TestReadLines(t *testing.T) {
+	tmpFile, err := os.CreateTemp("", "test_*.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	if _, err := tmpFile.WriteString("line1\nline2\nline3\n"); err != nil {
+		t.Fatal(err)
+	}
+	if err := tmpFile.Close(); err != nil {
+		t.Fatal(err)
+	}
+
+	lines, err := ReadLines(tmpFile.Name())
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.Equal(t, []string{"line1", "line2", "line3"}, lines)
+}
 
 func TestReadLinesString(t *testing.T) {
 	input := "line1\nline2\nline3"
@@ -13,6 +36,29 @@ func TestReadLinesString(t *testing.T) {
 	result := ReadLinesString(input)
 
 	assert.Equal(t, expected, result)
+}
+
+func TestReadRawFile(t *testing.T) {
+	tmpFile, err := os.CreateTemp("", "test_*.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	content := "This is a test file.\nWith multiple lines."
+	if _, err := tmpFile.WriteString(content); err != nil {
+		t.Fatal(err)
+	}
+	if err := tmpFile.Close(); err != nil {
+		t.Fatal(err)
+	}
+
+	data, err := ReadRawFile(tmpFile.Name())
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.Equal(t, content, data)
 }
 
 func TestReadLinesStringEmpty(t *testing.T) {
