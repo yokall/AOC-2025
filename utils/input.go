@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -71,26 +72,12 @@ func ParseIntLines(lines []string) []int {
 		if line == "" {
 			continue
 		}
-		var num int
-		_, err := scanInt(line, &num)
+		num, err := strconv.Atoi(line)
 		if err == nil {
 			result = append(result, num)
 		}
 	}
 	return result
-}
-
-// scanInt is a helper to parse integer from string
-func scanInt(s string, val *int) (int, error) {
-	_, err := bytes.NewBufferString(s).Read([]byte{})
-	if err != nil {
-		return 0, err
-	}
-	n, err := strings.NewReader(s).Read([]byte{})
-	if err != nil {
-		return 0, err
-	}
-	return n, nil
 }
 
 // FilterEmptyLines removes empty strings from slice

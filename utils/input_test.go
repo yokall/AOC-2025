@@ -59,6 +59,15 @@ func TestRead2DGridEmpty(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func TestParseIntLines(t *testing.T) {
+	input := []string{"10", " 20 ", "30", "invalid", "", "40"}
+	expected := []int{10, 20, 30, 40}
+
+	result := ParseIntLines(input)
+
+	assert.Equal(t, expected, result)
+}
+
 func TestFilterEmptyLines(t *testing.T) {
 	input := []string{"line1", "", "line2", "  ", "line3"}
 	expected := []string{"line1", "line2", "line3"}
