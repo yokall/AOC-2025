@@ -6,7 +6,6 @@ import (
 
 func Solve(input string) (int, int) {
 	lines := utils.ReadLinesString(input)
-	lines = utils.FilterEmptyLines(lines)
 
 	part1 := solvePart1(lines)
 	part2 := solvePart2(lines)
@@ -15,7 +14,18 @@ func Solve(input string) (int, int) {
 }
 
 func solvePart1(lines []string) int {
-	return 0
+	safe := NewSafe()
+
+	zeroCount := 0
+	for _, line := range lines {
+		safe.TurnDial(line)
+
+		if safe.positions[len(safe.positions)-1] == 0 {
+			zeroCount += 1
+		}
+	}
+
+	return zeroCount
 }
 
 func solvePart2(lines []string) int {
