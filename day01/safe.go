@@ -1,6 +1,9 @@
 package day01
 
-import "strconv"
+import (
+	"math"
+	"strconv"
+)
 
 type Safe struct {
 	maxNumber int
@@ -34,4 +37,29 @@ func (safe *Safe) TurnDial(instruction string) {
 		}
 		safe.positions = append(safe.positions, newPosition)
 	}
+}
+
+func (safe *Safe) HowManyTimesZero(instruction string) int {
+	count := 0
+
+	direction := string(instruction[0])
+	distance, _ := strconv.Atoi(instruction[1:])
+	currentPosition := safe.positions[len(safe.positions)-1]
+
+	count += int(math.Abs(float64(distance / 100)))
+
+	distance = distance % 100
+
+	switch direction {
+	case "L":
+		if currentPosition != 0 && distance > currentPosition {
+			count++
+		}
+	case "R":
+		if (currentPosition + distance) > 100 {
+			count++
+		}
+	}
+
+	return count
 }

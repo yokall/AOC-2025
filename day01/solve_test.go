@@ -21,5 +21,5 @@ L82`
 	part1, part2 := Solve(input)
 
 	assert.Equal(t, 3, part1, "part1 should match expected value")
-	assert.Equal(t, 0, part2, "part2 should match expected value")
+	assert.Equal(t, 6, part2, "part2 should match expected value")
 }

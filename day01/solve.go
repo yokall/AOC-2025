@@ -29,5 +29,18 @@ func solvePart1(lines []string) int {
 }
 
 func solvePart2(lines []string) int {
-	return 0
+	safe := NewSafe()
+
+	zeroCount := 0
+	for _, line := range lines {
+		zeroCount += safe.HowManyTimesZero(line)
+
+		safe.TurnDial(line)
+
+		if safe.positions[len(safe.positions)-1] == 0 {
+			zeroCount += 1
+		}
+	}
+
+	return zeroCount
 }

@@ -42,3 +42,25 @@ func TestTurnDial(t *testing.T) {
 	safe.TurnDial("R120")
 	assert.Equal(t, 15, safe.positions[len(safe.positions)-1])
 }
+
+func TestHowManyTimesZero(t *testing.T) {
+	safe := NewSafe()
+
+	count := safe.HowManyTimesZero("L68")
+	assert.Equal(t, 1, count)
+
+	count = safe.HowManyTimesZero("R68")
+	assert.Equal(t, 1, count)
+
+	count = safe.HowManyTimesZero("L168")
+	assert.Equal(t, 2, count)
+
+	count = safe.HowManyTimesZero("R168")
+	assert.Equal(t, 2, count)
+
+	count = safe.HowManyTimesZero("L268")
+	assert.Equal(t, 3, count)
+
+	count = safe.HowManyTimesZero("R268")
+	assert.Equal(t, 3, count)
+}
