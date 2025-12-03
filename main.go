@@ -1,15 +1,27 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"path/filepath"
 
 	. "github.com/yokall/aoc-2025/day01"
+	. "github.com/yokall/aoc-2025/day02"
 	. "github.com/yokall/aoc-2025/utils"
 )
 
+var solvers = map[string]func(string) (int, int){
+	"01": Solve,
+	"02": SolveDay02,
+}
+
 func main() {
-	inputPath, err := filepath.Abs("inputs/day01.txt")
+	solveDay("01")
+	solveDay("02")
+}
+
+func solveDay(day string) {
+	inputPath, err := filepath.Abs(fmt.Sprintf("inputs/day%s.txt", day))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,8 +31,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	part1, part2 := Solve(input)
+	part1, part2 := solvers[day](input)
 
-	log.Printf("Day 01 - Part 1: %d", part1)
-	log.Printf("Day 01 - Part 2: %d", part2)
+	log.Printf("Day %s - Part 1: %d", day, part1)
+	log.Printf("Day %s - Part 2: %d", day, part2)
 }
