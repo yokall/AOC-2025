@@ -7,17 +7,20 @@ import (
 
 	. "github.com/yokall/aoc-2025/day01"
 	. "github.com/yokall/aoc-2025/day02"
+	. "github.com/yokall/aoc-2025/day03"
 	. "github.com/yokall/aoc-2025/utils"
 )
 
 var solvers = map[string]func(string) (int, int){
 	"01": Solve,
 	"02": SolveDay02,
+	"03": SolveDay03,
 }
 
 func main() {
 	solveDay("01")
 	solveDay("02")
+	solveDay("03")
 }
 
 func solveDay(day string) {
