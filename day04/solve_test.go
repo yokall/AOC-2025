@@ -20,5 +20,5 @@ func TestSolve(t *testing.T) {
 
 	part1, part2 := SolveDay04(input)
 	assert.Equal(t, 13, part1)
-	assert.Equal(t, 0, part2)
+	assert.Equal(t, 43, part2)
 }
